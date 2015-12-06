@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="1" android:orientation="vertical" android:baselineAligned="false"
+              android:id="@+id/startLayout" android:rowCount="110" android:columnCount="1">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView" android:layout_gravity="center_horizontal" android:textStyle="bold"
+            android:gravity="center_vertical|center_horizontal" android:layout_weight="0.06"
+            android:text="@string/enterSum"/>
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/checkSumEditText" android:layout_gravity="center_horizontal" android:layout_weight="0.06"
+            android:numeric="signed|integer" android:focusable="true" android:focusableInTouchMode="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check"
+            android:id="@+id/button" android:layout_gravity="center_horizontal" android:layout_weight="0.06"
+            android:onClick="onCheckSum"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" android:textStyle="bold"
+            android:id="@+id/resultTextView" android:layout_gravity="center_horizontal" android:layout_weight="0.09"
+            android:gravity="center_vertical|center_horizontal"/>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.02">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oneAgain"
+                android:id="@+id/onceAgainButton" android:layout_gravity="left|center_vertical"
+                android:onClick="onOnceAgain"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:id="@+id/settingsButton" android:layout_gravity="right|center_vertical"
+                android:onClick="onSettings"/>
+    </FrameLayout>
+
+</LinearLayout>

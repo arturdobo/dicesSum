@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" android:orientation="horizontal" android:id="@+id/dicesLayout"
+             android:paddingLeft="100dp" android:paddingRight="100dp" android:background="#ffffff">
+
+    <GridView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="auto_fit"
+            android:columnWidth="80dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:id="@+id/dicesGridView"
+            android:layout_gravity="center" android:background="#ffffff" android:padding="5dp"/>
+</FrameLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dices\' Sum</string>
+    <string name="dicesNumber">Dices Number</string>
+    <string name="chooseADicesNumber">Choose a number</string>
+    <string name="timeToShow">Time to show in seconds</string>
+    <string name="start">Start</string>
+    <string name="enterSum">Enter sum</string>
+    <string name="check">Check</string>
+    <string name="settings">Settings</string>
+    <string name="oneAgain">Once again</string>
+    <string name="correctAnswer">Correct answer!</string>
+    <string name="wrongAnswer">Wrong! Sum is %1$d</string>
+
+    <string-array name="availableDicesNumbers">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+</resources>
