@@ -75,7 +75,7 @@ public class ResultActivity extends Activity {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus)
-					Keyboards.show(ResultActivity.this);
+					Keyboards.hide(v, ResultActivity.this);
 			}
 		};
 	}

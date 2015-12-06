@@ -2,17 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent" android:orientation="horizontal" android:id="@+id/dicesLayout"
-             android:paddingLeft="100dp" android:paddingRight="100dp" android:background="#ffffff">
+             android:paddingLeft="20dp" android:paddingRight="20dp" android:background="#ffffff">
 
     <GridView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numColumns="auto_fit"
-            android:columnWidth="80dp"
-            android:horizontalSpacing="10dp"
+            android:numColumns="3"
             android:verticalSpacing="10dp"
             android:gravity="center"
             android:stretchMode="columnWidth"
             android:id="@+id/dicesGridView"
-            android:layout_gravity="center" android:background="#ffffff" android:padding="5dp"/>
+            android:layout_gravity="center" android:background="#FFFFFF" android:padding="5dp"
+            android:stackFromBottom="false" android:clickable="false"
+            android:horizontalSpacing="10dp"
+    />
 </FrameLayout>
