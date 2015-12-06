@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onStart(View view) {
-		Keybaords.hide(view, this);
+		Keyboards.hide(view, this);
 
 		String timeToView = ((EditText) findViewById(R.id.timeToShowText)).getText().toString();
 		int time = timeToView.isEmpty() || "0".equals(timeToView) ? 1 : Integer.parseInt(timeToView);

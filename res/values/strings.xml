@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dices\' Sum</string>
+    <string name="app_name">Dices Sum</string>
     <string name="dicesNumber">Dices Number</string>
     <string name="chooseADicesNumber">Choose a number</string>
     <string name="timeToShow">Time to show in seconds</string>

@@ -31,7 +31,7 @@ public class ResultActivity extends Activity {
 	}
 
 	public void onCheckSum(View view) {
-		Keybaords.hide(view, this);
+		Keyboards.hide(view, this);
 
 		String resultStr = sumEditText.getText().toString();
 		int given = Integer.parseInt(resultStr.isEmpty() ? "0" : resultStr);
@@ -49,7 +49,7 @@ public class ResultActivity extends Activity {
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void onOnceAgain(View view) {
-		Keybaords.hide(view, this);
+		Keyboards.hide(view, this);
 
 		params.remove(Extras.EXPECTED_DICES_SUM);
 		Intent intent = new Intent(this, DicesActivity.class);
@@ -75,7 +75,7 @@ public class ResultActivity extends Activity {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus)
-					Keybaords.show(ResultActivity.this);
+					Keyboards.show(ResultActivity.this);
 			}
 		};
 	}
