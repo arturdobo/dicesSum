@@ -25,9 +25,9 @@ public class ResultActivity extends Activity {
 		params = getIntent().getExtras();
 
 		sumEditText = (EditText) findViewById(R.id.checkSumEditText);
-		sumEditText.setOnFocusChangeListener(showKeyboard());
-
 		resultTextView = (TextView) findViewById(R.id.resultTextView);
+
+		Keyboards.show(this);
 	}
 
 	public void onCheckSum(View view) {
@@ -35,23 +35,34 @@ public class ResultActivity extends Activity {
 
 		String resultStr = sumEditText.getText().toString();
 		int given = Integer.parseInt(resultStr.isEmpty() ? "0" : resultStr);
-		int expected = params.getInt(Extras.EXPECTED_DICES_SUM);
+		int expected = params.getInt(Keys.EXPECTED_DICES_SUM);
 		Resources res = getResources();
 
-		if (given == expected) {
+		boolean correct = given == expected;
+		if (correct) {
 			resultTextView.setText(res.getString(R.string.correctAnswer));
 			resultTextView.setTextColor(Color.GREEN);
 		} else {
 			resultTextView.setText(String.format(res.getString(R.string.wrongAnswer), expected));
 			resultTextView.setTextColor(Color.RED);
 		}
+
+		updateStats(correct);
+	}
+
+	private void updateStats(boolean correct) {
+		Stats.update(this, correct);
+		Resources res = getResources();
+		TextView correctness = (TextView) findViewById(R.id.correctnessPercentageEditText);
+		correctness.setText(String.format(res.getString(R.string.correctnessPercentage),
+		                                            Stats.getCorectnessPercentage(this)));
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void onOnceAgain(View view) {
 		Keyboards.hide(view, this);
 
-		params.remove(Extras.EXPECTED_DICES_SUM);
+		params.remove(Keys.EXPECTED_DICES_SUM);
 		Intent intent = new Intent(this, DicesActivity.class);
 		intent.putExtras(params);
 		startActivity(intent);
@@ -62,7 +73,7 @@ public class ResultActivity extends Activity {
 		reset();
 	}
 
-	public void onSettings(View view) {
+	public void onReset(View view) {
 		reset();
 	}
 
@@ -75,7 +86,7 @@ public class ResultActivity extends Activity {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus)
-					Keyboards.hide(v, ResultActivity.this);
+					Keyboards.show(ResultActivity.this);
 			}
 		};
 	}

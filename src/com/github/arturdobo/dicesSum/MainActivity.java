@@ -27,9 +27,11 @@ public class MainActivity extends Activity {
 		int number = Integer.parseInt(dicesNumber.getSelectedItem()
 		                                         .toString());
 
+		Stats.reset(this);
+
 		Bundle params = new Bundle();
-		params.putInt(Extras.TIME_TO_VIEW, time);
-		params.putInt(Extras.DICES_NUMBER, number);
+		params.putInt(Keys.TIME_TO_VIEW, time);
+		params.putInt(Keys.DICES_NUMBER, number);
 
 		Intent intent = new Intent(this, DicesActivity.class);
 		intent.putExtras(params);

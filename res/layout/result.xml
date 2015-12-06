@@ -40,17 +40,23 @@
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
             android:layout_weight="0.02">
         <Button
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="@string/oneAgain"
-                android:id="@+id/onceAgainButton" android:layout_gravity="left|center_vertical"
+                android:id="@+id/onceAgainButton" android:layout_gravity="left|center"
                 android:onClick="onOnceAgain"/>
         <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:id="@+id/resetButton" android:layout_gravity="center|right"
+                android:onClick="onReset"/>
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/settings"
-                android:id="@+id/settingsButton" android:layout_gravity="right|center_vertical"
-                android:onClick="onSettings"/>
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/correctnessPercentageEditText" android:layout_gravity="center"
+                android:textSize="20dp"/>
     </FrameLayout>
 
 </LinearLayout>

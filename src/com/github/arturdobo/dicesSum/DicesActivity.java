@@ -28,8 +28,8 @@ public class DicesActivity extends Activity {
 		setContentView(R.layout.dices);
 
 		Bundle params = getIntent().getExtras();
-		dicesNumber = params.getInt(Extras.DICES_NUMBER);
-		timeToView = params.getInt(Extras.TIME_TO_VIEW);
+		dicesNumber = params.getInt(Keys.DICES_NUMBER);
+		timeToView = params.getInt(Keys.TIME_TO_VIEW);
 
 		GridView gridView = (GridView) findViewById(R.id.dicesGridView);
 		List<Integer> diceNumbers = generateNumbers();
@@ -40,7 +40,7 @@ public class DicesActivity extends Activity {
 		moveToResult = new Runnable() {
 			@Override
 			public void run() {
-				params.putInt(Extras.EXPECTED_DICES_SUM, dicesSum);
+				params.putInt(Keys.EXPECTED_DICES_SUM, dicesSum);
 
 				Intent intent = new Intent(DicesActivity.this, ResultActivity.class);
 				intent.putExtras(params);
