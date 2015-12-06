@@ -1,11 +1,9 @@
 package com.github.arturdobo.dicesSum;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +14,7 @@ public class ResultActivity extends Activity {
 	private EditText sumEditText;
 	private Bundle params;
 	private TextView resultTextView;
+	private boolean sumChecked = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,27 +39,32 @@ public class ResultActivity extends Activity {
 
 		boolean correct = given == expected;
 		if (correct) {
-			resultTextView.setText(res.getString(R.string.correctAnswer));
+			resultTextView.setText(res.getString(R.string.correct));
 			resultTextView.setTextColor(Color.GREEN);
 		} else {
-			resultTextView.setText(String.format(res.getString(R.string.wrongAnswer), expected));
+			resultTextView.setText(String.format(res.getString(R.string.wrongAnswer),
+			                                     expected,
+			                                     Stats.getCorrectStreak(this)));
 			resultTextView.setTextColor(Color.RED);
 		}
 
 		updateStats(correct);
+		sumChecked = true;
 	}
 
 	private void updateStats(boolean correct) {
 		Stats.update(this, correct);
 		Resources res = getResources();
 		TextView correctness = (TextView) findViewById(R.id.correctnessPercentageEditText);
-		correctness.setText(String.format(res.getString(R.string.correctnessPercentage),
-		                                            Stats.getCorectnessPercentage(this)));
+		correctness.setText(String.format(res.getString(R.string.correctnessStats),
+		                                  Stats.getCorrectnessPercentage(this),
+		                                  Stats.getCorrectStreak(this)));
 	}
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	public void onOnceAgain(View view) {
+	public void onNext(View view) {
 		Keyboards.hide(view, this);
+
+		if (!sumChecked) onCheckSum(view);
 
 		params.remove(Keys.EXPECTED_DICES_SUM);
 		Intent intent = new Intent(this, DicesActivity.class);

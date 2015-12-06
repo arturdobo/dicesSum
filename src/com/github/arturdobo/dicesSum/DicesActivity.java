@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,9 +98,17 @@ public class DicesActivity extends Activity {
 			diceView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			diceView.setAdjustViewBounds(true);
 			diceView.setBackgroundResource(diceIds[number]);
-			diceView.setLayoutParams(new LinearLayout.LayoutParams(250, 250));
+
+			diceView.setLayoutParams(new RelativeLayout.LayoutParams(getDiceDimension(80),
+			                                                         getDiceDimension(80)));
 
 			return diceView;
+		}
+
+		private int getDiceDimension(int size) {
+			float scale = getContext().getResources()
+			                          .getDisplayMetrics().density;
+			return (int) (size * scale + 0.5f);
 		}
 	}
 }
