@@ -23,14 +23,14 @@ public class MainActivity extends Activity {
 		Keyboards.hide(view, this);
 
 		String timeToView = ((EditText) findViewById(R.id.timeToShowText)).getText().toString();
-		int time = timeToView.isEmpty() || "0".equals(timeToView) ? 1 : Integer.parseInt(timeToView);
+		float time = timeToView.isEmpty() || timeToView.matches("0(\\.0+)?") ? 1 : Float.parseFloat(timeToView);
 		int number = Integer.parseInt(dicesNumber.getSelectedItem()
 		                                         .toString());
 
 		Stats.reset(this);
 
 		Bundle params = new Bundle();
-		params.putInt(Keys.TIME_TO_VIEW, time);
+		params.putFloat(Keys.TIME_TO_VIEW, time < 0 ? time * -1 : time);
 		params.putInt(Keys.DICES_NUMBER, number);
 
 		Intent intent = new Intent(this, DicesActivity.class);

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DicesActivity extends Activity {
 	private int dicesNumber;
-	private int timeToView;
+	private float timeToView;
 	private int dicesSum;
 	private Handler handler;
 	private Runnable moveToResult;
@@ -29,7 +29,7 @@ public class DicesActivity extends Activity {
 
 		Bundle params = getIntent().getExtras();
 		dicesNumber = params.getInt(Keys.DICES_NUMBER);
-		timeToView = params.getInt(Keys.TIME_TO_VIEW);
+		timeToView = params.getFloat(Keys.TIME_TO_VIEW);
 
 		GridView gridView = (GridView) findViewById(R.id.dicesGridView);
 		List<Integer> diceNumbers = generateNumbers();
@@ -48,7 +48,7 @@ public class DicesActivity extends Activity {
 				startActivity(intent);
 			}
 		};
-		handler.postDelayed(moveToResult, timeToView * 1000);
+		handler.postDelayed(moveToResult, (long) (timeToView * 1000));
 	}
 
 	@Override
