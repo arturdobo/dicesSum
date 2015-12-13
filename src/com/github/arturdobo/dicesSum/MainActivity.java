@@ -20,18 +20,16 @@ public class MainActivity extends Activity {
 	}
 
 	public void onStart(View view) {
-		Keyboards.hide(view, this);
-
 		String timeToView = ((EditText) findViewById(R.id.timeToShowText)).getText().toString();
-		float time = timeToView.isEmpty() || timeToView.matches("0(\\.0+)?") ? 1 : Float.parseFloat(timeToView);
-		int number = Integer.parseInt(dicesNumber.getSelectedItem()
-		                                         .toString());
+		float time = timeToView.isEmpty() || timeToView.matches("0(\\.0+)?") ? 1
+		                                                                     : Math.abs(Float.parseFloat(timeToView));
+		int dices = Integer.parseInt(dicesNumber.getSelectedItem().toString());
 
 		Stats.reset(this);
 
 		Bundle params = new Bundle();
-		params.putFloat(Keys.TIME_TO_VIEW, time < 0 ? time * -1 : time);
-		params.putInt(Keys.DICES_NUMBER, number);
+		params.putFloat(Keys.TIME_TO_VIEW, time);
+		params.putInt(Keys.DICES_NUMBER, dices);
 
 		Intent intent = new Intent(this, DicesActivity.class);
 		intent.putExtras(params);
@@ -54,5 +52,4 @@ public class MainActivity extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dicesNumber.setAdapter(adapter);
 	}
-
 }

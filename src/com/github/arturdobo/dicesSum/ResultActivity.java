@@ -9,7 +9,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResultActivity extends Activity {
+	private static Map<Boolean, Integer> colors = new HashMap<>(2);
+	private Resources res;
+
+	static {
+		colors.put(true, Color.GREEN);
+		colors.put(true, Color.RED);
+	}
 
 	private EditText sumEditText;
 	private Bundle params;
@@ -25,28 +35,25 @@ public class ResultActivity extends Activity {
 
 		sumEditText = (EditText) findViewById(R.id.checkSumEditText);
 		resultTextView = (TextView) findViewById(R.id.resultTextView);
-
-		Keyboards.show(this);
+		res = getResources();
 	}
 
 	public void onCheckSum(View view) {
 		Keyboards.hide(view, this);
 
-		String resultStr = sumEditText.getText().toString();
-		int given = Integer.parseInt(resultStr.isEmpty() ? "0" : resultStr);
+		String givenStr = sumEditText.getText().toString();
+		int given = Integer.parseInt(givenStr.isEmpty() ? "0" : givenStr);
 		int expected = params.getInt(Keys.EXPECTED_DICES_SUM);
-		Resources res = getResources();
 
 		boolean correct = given == expected;
-		if (correct) {
+		if (correct)
 			resultTextView.setText(res.getString(R.string.correct));
-			resultTextView.setTextColor(Color.GREEN);
-		} else {
+		else
 			resultTextView.setText(String.format(res.getString(R.string.wrongAnswer),
 			                                     expected,
 			                                     Stats.getCorrectStreak(this)));
-			resultTextView.setTextColor(Color.RED);
-		}
+
+		resultTextView.setTextColor(colors.get(correct));
 
 		updateStats(correct);
 		sumChecked = true;
@@ -54,7 +61,6 @@ public class ResultActivity extends Activity {
 
 	private void updateStats(boolean correct) {
 		Stats.update(this, correct);
-		Resources res = getResources();
 		TextView correctness = (TextView) findViewById(R.id.correctnessPercentageEditText);
 		correctness.setText(String.format(res.getString(R.string.correctnessStats),
 		                                  Stats.getCorrectnessPercentage(this),
@@ -62,8 +68,6 @@ public class ResultActivity extends Activity {
 	}
 
 	public void onNext(View view) {
-		Keyboards.hide(view, this);
-
 		if (!sumChecked) onCheckSum(view);
 
 		params.remove(Keys.EXPECTED_DICES_SUM);
@@ -85,13 +89,4 @@ public class ResultActivity extends Activity {
 		startActivity(new Intent(this, MainActivity.class));
 	}
 
-	private View.OnFocusChangeListener showKeyboard() {
-		return new View.OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus)
-					Keyboards.show(ResultActivity.this);
-			}
-		};
-	}
 }
